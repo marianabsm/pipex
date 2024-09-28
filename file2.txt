@@ -1,0 +1,8 @@
+file1.txt
+file2.txt
+ft_libft
+makefile
+pipex
+pipex.c
+pipex.h
+utils.c

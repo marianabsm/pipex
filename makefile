@@ -12,7 +12,8 @@
 
 NAME = pipex
 
-LIBFT = ft_libft
+LIBFT_PATH = ft_libft
+LIBFT = ${LIBFT_PATH}/libft.a
 
 SRCS = pipex.c utils.c
 
@@ -23,14 +24,19 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
-${NAME} : ${OFILES}	
+${NAME}: ${LIBFT} ${OFILES}	
 
-	$(CC) $(CFLAGS) -Lft_libft -lft $(OFILES) -o $(NAME)
+	$(CC) $(CFLAGS) $(OFILES) $(LIBFT) -o $(NAME)
+
+${LIBFT}:
+	@make -s -C $(LIBFT_PATH) all
 
 clean:
+	@make -s -C $(LIBFT_PATH) clean
 	rm -f $(OFILES)
 
 fclean: clean
+	@make -s -C $(LIBFT_PATH) fclean
 	rm -f $(NAME)
 
 re: fclean all

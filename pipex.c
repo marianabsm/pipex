@@ -14,19 +14,31 @@
 
 int	main(int ac, char **av, char **env)
 {
-	int	pipefd[2];
-	int	pid;
+	int		pipefd[2];
+	int		status;
+	pid_t	pid;
+	pid_t	pid2;
 
 	if (ac != 5)
 		exit(1);
 	if (pipe(pipefd) == -1)
-		exit(-1);
+		exit(1);
 	pid = fork();
 	if (pid == -1)
-		exit(-1);
+		exit(1);
 	if (pid == 0)
 		child(av, pipefd, env);
-	parent(av, pipefd, env);
+	pid2 = fork();
+	if (pid2 == -1)
+		exit(1);
+	if (pid2 == 0)
+		parent(av, pipefd, env);
+	close(pipefd[0]);
+	close(pipefd[1]);
+	waitpid(pid, &status, 0);
+	waitpid(pid2, &status, 0);
+	printf("Status -> %d\n", WEXITSTATUS(status));
+	return (WEXITSTATUS(status));
 }
 
 void	child(char **av, int *pipefd, char **env)

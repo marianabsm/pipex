@@ -6,7 +6,7 @@
 /*   By: marianamestre <marianamestre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:40:37 by marianamest       #+#    #+#             */
-/*   Updated: 2024/10/10 17:13:53 by marianamest      ###   ########.fr       */
+/*   Updated: 2024/10/10 17:20:14 by marianamest      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	child(char **av, int *pipefd, char **env)
 	int	fd;
 
 	fd = ft_open(av[1], 0);
-	if(fd == -1)
+	if (fd == -1)
 	{
 		write(1, "error opening infile\n", 21);
 		close(pipefd[0]);
@@ -63,7 +63,7 @@ void	child2(char **av, int *pipefd, char **env)
 	int	fd;
 
 	fd = ft_open(av[4], 1);
-	if(fd == -1)
+	if (fd == -1)
 	{
 		write(1, "error opening outfile\n", 22);
 		close(pipefd[0]);

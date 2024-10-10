@@ -6,7 +6,7 @@
 /*   By: marianamestre <marianamestre@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:40:16 by marianamest       #+#    #+#             */
-/*   Updated: 2024/09/21 17:13:03 by marianamest      ###   ########.fr       */
+/*   Updated: 2024/10/10 17:08:49 by marianamest      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	ft_open(char *file_name, int flag)
 		i = open(file_name, O_RDONLY, 0777);
 	if (flag == 1)
 		i = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (i == -1)
-		exit(1);
 	return (i);
 }
 

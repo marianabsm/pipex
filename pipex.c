@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marianamestre <marianamestre@student.42    +#+  +:+       +#+        */
+/*   By: mabrito- <mabrito-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 22:40:37 by marianamest       #+#    #+#             */
-/*   Updated: 2024/10/10 17:20:14 by marianamest      ###   ########.fr       */
+/*   Updated: 2024/10/10 19:33:24 by mabrito-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av, char **env)
 	pid_t	pid2;
 
 	if (ac != 5)
-		return (ft_putstr_fd("Not enough arguments\n", 2), 1);
+		return (ft_putstr_fd("Incorrect number of arguments\n", 2), 1);
 	if (pipe(pipefd) == -1)
 		exit(1);
 	pid = fork();
@@ -54,7 +54,9 @@ void	child(char **av, int *pipefd, char **env)
 	}
 	dup2(fd, 0);
 	dup2(pipefd[1], 1);
+	close(fd);
 	close(pipefd[0]);
+	close(pipefd[1]);
 	my_executor(av[2], env);
 }
 
@@ -72,6 +74,8 @@ void	child2(char **av, int *pipefd, char **env)
 	}
 	dup2(fd, 1);
 	dup2(pipefd[0], 0);
+	close(fd);
+	close(pipefd[0]);
 	close(pipefd[1]);
 	my_executor(av[3], env);
 }

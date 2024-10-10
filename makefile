@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marianamestre <marianamestre@student.42    +#+  +:+       +#+         #
+#    By: mabrito- <mabrito-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/25 19:31:09 by marianamest       #+#    #+#              #
-#    Updated: 2024/09/18 13:52:38 by marianamest      ###   ########.fr        #
+#    Updated: 2024/10/10 19:09:52 by mabrito-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ ${NAME}: ${LIBFT} ${OFILES}
 	$(CC) $(CFLAGS) $(OFILES) $(LIBFT) -o $(NAME)
 
 ${LIBFT}:
-	@make -s -C $(LIBFT_PATH) all
+	@make -s -C $(LIBFT_PATH) bonus
 
 clean:
 	@make -s -C $(LIBFT_PATH) clean
